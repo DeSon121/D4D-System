@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Secrets & Environment
+.env
+*/.env
+.env.local
+
+# OS & Build outputs
+dist/
+build/
+.DS_Store
+Thumbs.db
