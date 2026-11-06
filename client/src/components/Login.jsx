@@ -37,37 +37,68 @@ export default function Login({ onLoginSuccess, switchToRegister }) {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
-      <h2>D4D Login</h2>
-      {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '10px' }}>
-          <label>Email:</label><br />
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-            style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-          />
+    <div className="d4d-auth-page">
+      <div className="d4d-auth-split">
+        {/* Campus IT Branding Panel */}
+        <div className="d4d-auth-branding">
+          <div className="d4d-brand-logo">
+            <span>🛡️ D4D Campus IT</span>
+          </div>
+          <h1>Technology problems? We've got you covered.</h1>
+          <p>Your campus IT support, simplified. Submit and track your support requests in one place.</p>
+          <div className="d4d-brand-features">
+            <div className="d4d-brand-feature-item">
+              <div className="d4d-feature-icon">✓</div>
+              <span>Submit support tickets</span>
+            </div>
+            <div className="d4d-brand-feature-item">
+              <div className="d4d-feature-icon">✓</div>
+              <span>Track progress</span>
+            </div>
+          </div>
         </div>
-        <div style={{ marginBottom: '15px' }}>
-          <label>Password:</label><br />
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-            style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
-          />
+
+        {/* Authentication Card */}
+        <div className="d4d-auth-card">
+          <div className="d4d-auth-header">
+            <h2>Welcome back</h2>
+            <p>Sign in to access your support dashboard.</p>
+          </div>
+          {error && <div className="d4d-alert-error">{error}</div>}
+          <form onSubmit={handleSubmit}>
+            <div className="d4d-form-group">
+              <label htmlFor="login-email">Email Address</label>
+              <input
+                type="email"
+                id="login-email"
+                className="d4d-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Enter your email"
+              />
+            </div>
+            <div className="d4d-form-group">
+              <label htmlFor="login-password">Password</label>
+              <input
+                type="password"
+                id="login-password"
+                className="d4d-input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Enter your password"
+              />
+            </div>
+            <button type="submit" disabled={loading} className="d4d-btn-primary">
+              {loading ? 'Signing in...' : 'Login'}
+            </button>
+          </form>
+          <div className="d4d-auth-footer">
+            Don't have an account? <button onClick={switchToRegister} className="d4d-auth-link">Register here</button>
+          </div>
         </div>
-        <button type="submit" disabled={loading} style={{ width: '100%', padding: '10px', background: '#007bff', color: '#white', border: 'none', borderRadius: '4px' }}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-      </form>
-      <p style={{ marginTop: '15px', textAlign: 'center' }}>
-        Don't have an account? <button onClick={switchToRegister} style={{ background: 'none', border: 'none', color: '#007bff', cursor: 'pointer', textDecoration: 'underline' }}>Register here</button>
-      </p>
+      </div>
     </div>
   );
 }

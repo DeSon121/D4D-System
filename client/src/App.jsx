@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
@@ -22,13 +22,13 @@ export default function App() {
     setToken(userToken);
   };
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setUser(null);
     setToken(null);
     setView('login');
-  };
+  }, []);
 
   if (user && token) {
     return <Dashboard user={user} token={token} onLogout={handleLogout} />;
